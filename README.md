@@ -1,7 +1,7 @@
 # Django Project Setup
 
 ## Overview  
-This is a basic setup for a Django project with a virtual environment, Git repository, and an initial app structure. Follow the steps below to get started.
+This is a basic setup for a Django project with a Git repository, and an initial app structure. Follow the steps below to get started.
 
 ## Requirements 
 - Python 3.x  
