@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'social_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -103,22 +103,22 @@ WSGI_APPLICATION = 'social_api.wsgi.application'
 #     }
 # }
 
-os.environ.setdefault("PGDATABASE", "social")
-os.environ.setdefault("PGUSER", "social_user")
-os.environ.setdefault("PGPASSWORD", "12345")
-os.environ.setdefault("PGHOST", "localhost")
-os.environ.setdefault("PGPORT", "5432")
+# os.environ.setdefault("PGDATABASE", "social")
+# os.environ.setdefault("PGUSER", "social_user")
+# os.environ.setdefault("PGPASSWORD", "12345")
+# os.environ.setdefault("PGHOST", "localhost")
+# os.environ.setdefault("PGPORT", "5432")
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ["PGDATABASE"],
-        'USER': os.environ["PGUSER"],
-        'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ["PGDATABASE"],
+#         'USER': os.environ["PGUSER"],
+#         'PASSWORD': os.environ["PGPASSWORD"],
+#         'HOST': os.environ["PGHOST"],
+#         'PORT': os.environ["PGPORT"],
+#     }
+# }
 
 
 
