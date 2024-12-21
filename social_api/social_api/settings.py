@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["social-api-production-6c94.up.railway.app", "127.0.0.1"]
 
 
 # Application definition
