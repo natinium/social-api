@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'social_api.wsgi.application'
 os.environ.setdefault("PGDATABASE", "social")
 os.environ.setdefault("PGUSER", "social_user")
 os.environ.setdefault("PGPASSWORD", "12345")
-os.environ.setdefault("PGHOST", "localhost")
+os.environ.setdefault("postgresql://postgres:qqVKDGLbjXOHVcJOEuBPvdQlmTZGWuZT@autorack.proxy.rlwy.net:29551/railway", "localhost")
 os.environ.setdefault("PGPORT", "5432")
 
 DATABASES = {
