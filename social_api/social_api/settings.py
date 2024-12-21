@@ -115,8 +115,8 @@ DATABASES = {
         'NAME': os.environ["PGDATABASE"],
         'USER': os.environ["PGUSER"],
         'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': "autorack.proxy.rlwy.net:29551",
-        'PORT': "5432",
+        'HOST': os.environ["PGHOST"],
+        'PORT': os.environ["PGPORT"],
     }
 }
 
