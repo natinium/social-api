@@ -114,10 +114,11 @@ DATABASES = {
         'NAME': os.environ["PGDATABASE"],
         'USER': os.environ["PGUSER"],
         'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
+        'HOST': "social-api-production-6c94.up.railway.app",
+        'PORT': "8000",
     }
 }
+
 
 
 # Password validation
