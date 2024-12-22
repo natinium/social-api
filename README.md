@@ -1,10 +1,10 @@
 # Django Project Setup
 
 ## Overview  
-This is a basic setup for a Django project with a Git repository, and an initial app structure. Follow the steps below to get started.
+This is a basic setup for a social media api Django project with a Git repository, and an initial app structure. Follow the steps below to get started.
 
 ## Requirements 
-- Python 3.x  
+- Python 3.10
 - pip  
 - virtualenv (recommended for managing dependencies)  
 
@@ -38,6 +38,12 @@ Once migrations are complete, start the development server:
 
 The development server should now be running at:  
 http://127.0.0.1:8000/
+
+Here is a live deployement with swagger documentation
+https://atsenati.pythonanywhere.com/swagger/
+
+Here is a live deployement with redoc documentation
+https://atsenati.pythonanywhere.com/redoc/
 
 ## License  
 This project is licensed under the MIT License.
