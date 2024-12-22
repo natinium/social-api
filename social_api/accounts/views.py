@@ -1,3 +1,7 @@
+"""
+This module defines the API endpoints for user management, including registration,
+login, following/unfollowing, using Django REST Framework.
+"""
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -9,18 +13,39 @@ from .serializers import UserSerializer, RegistrationSerializer, LoginSerializer
 from .permissions import IsAuthenticatedUser
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for managing users, including registration, login, follow/unfollow actions.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def get_serializer_class(self):
+        """
+        Determines the appropriate serializer class based on the action being performed.
+        """
         if self.action == 'register':
             return RegistrationSerializer
-        if self.action == 'login':
+        elif self.action == 'login':
             return LoginSerializer
         return UserSerializer
 
     @action(detail=False, methods=['post'])
     def login(self, request):
+        """
+        Logs in a user and returns an authentication token upon successful credentials.
+
+        **Request:**
+            - data: Dictionary containing email and password fields.
+
+        **Response:**
+            - On success:
+                - token: Authentication token for the user.
+                - user_id: User ID of the logged-in user.
+                - email: Email address of the user.
+                - username: Username of the user.
+            - On failure (400 Bad Request):
+                - error: Description of the error (e.g., Invalid credentials).
+        """
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             email = serializer.validated_data['email']
@@ -37,6 +62,21 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def register(self, request):
+        """
+        Registers a new user and returns an authentication token upon successful registration.
+
+        **Request:**
+            - data: Dictionary containing user information according to the RegistrationSerializer.
+
+        **Response:**
+            - On success (201 Created):
+                - token: Authentication token for the newly registered user.
+                - user_id: User ID of the newly registered user.
+                - email: Email address of the user.
+                - username: Username of the user.
+            - On failure (400 Bad Request):
+                - Details of the validation errors encountered during registration.
+        """
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -46,6 +86,17 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated, IsAuthenticatedUser])
     def follow(self, request, pk=None):
+        """
+        Allows a logged-in user to follow another user.
+
+        **Request:** (Requires authentication and valid user permissions)
+
+        **Response:**
+            - On success (200 OK):
+                - status: 'followed' indicating successful follow action.
+            - On failure (400 Bad Request):
+                - error: Description of the error (e.g., Cannot follow yourself).
+        """
         user_to_follow = self.get_object()
         if request.user == user_to_follow:
             return Response({'error': 'Cannot follow yourself'}, status=status.HTTP_400_BAD_REQUEST)
@@ -54,6 +105,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated, IsAuthenticatedUser])
     def unfollow(self, request, pk=None):
+        """
+        Allows a logged-in user to unfollow another user.
+
+        **Request:** (Requires authentication and valid user permissions)
+
+        **Response:**
+            - On success (200 OK):
+                - status: 'unfollowed' indicating successful unfollow action.
+        """
         user_to_unfollow = self.get_object()
         Follow.objects.filter(follower=request.user, following=user_to_unfollow).delete()
         return Response({'status': 'unfollowed'}, status=status.HTTP_200_OK)
