@@ -1,12 +1,12 @@
 """
 This module defines custom user and follow models for a Django application.
 
-The `User` model extends Django's `AbstractUser` and uses email as the unique identifier. 
+The `User` model extends Django's `AbstractUser` and uses email as the unique identifier.
 It also requires the username field during user creation.
 
-The `Follow` model represents the relationship between two users where one user 
-follows another. It includes fields for the follower, the followed user, 
-and the timestamp of the follow action. 
+The `Follow` model represents the relationship between two users where one user
+follows another. It includes fields for the follower, the followed user,
+and the timestamp of the follow action.
 """
 
 from django.contrib.auth.models import AbstractUser
@@ -22,6 +22,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     # Require username field during user creation
     REQUIRED_FIELDS = ['username']
+
 
 class Follow(models.Model):
     """

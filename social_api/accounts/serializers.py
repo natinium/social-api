@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'username']
 
+
 class RegistrationSerializer(serializers.ModelSerializer):
     """
     Handles user registration with password validation.
@@ -48,6 +49,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
 
 class LoginSerializer(serializers.Serializer):
     """
