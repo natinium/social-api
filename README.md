@@ -1,7 +1,7 @@
-# Django Project Setup
+# Social media api with Django + DRF
 
 ## Overview  
-This is a basic setup for a social media api Django project with a Git repository, and an initial app structure. Follow the steps below to get started.
+This project is a robust social media API built using Django and the Django REST Framework (DRF). It provides a foundation for creating a dynamic social media platform, enabling users to interact, share content, and engage with one another. Follow the steps below to get started with the development and implementation of your own social media API.
 
 ## Requirements 
 - Python 3.10
