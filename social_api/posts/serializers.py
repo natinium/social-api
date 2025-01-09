@@ -8,11 +8,32 @@ class PostSerializer(serializers.ModelSerializer):
     """
     Serializer for the Post model.
     """
-    author = serializers.ReadOnlyField(source='author.username')  # Serializes the username of the post's author. This field is read-only.
+    author = serializers.ReadOnlyField(source='author.username')
+
+    # Added fields to display the total number of likes and the users who liked the post
+    likes_count = serializers.SerializerMethodField()
+    likers = serializers.SerializerMethodField()
 
     class Meta:
+        model = Post
+        fields = [
+            'id',
+            'title',
+            'content',
+            'author',
+            'created_at',
+            'likes_count',
+            'likers',
+        ]
+
+    def get_likes_count(self, obj):
         """
-        Meta class for the PostSerializer. Defines metadata about the serializer.
+        Return the total number of likes for this post.
         """
-        model = Post  # Specifies the model to be serialized (the Post model).
-        fields = ['id', 'title', 'content', 'author', 'created_at']  # Specifies the fields to be included in the serialized representation of a Post object.
+        return obj.like_set.count()
+
+    def get_likers(self, obj):
+        """
+        Return a list of usernames who liked this post.
+        """
+        return [like.user.username for like in obj.like_set.all()]
